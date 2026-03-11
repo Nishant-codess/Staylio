@@ -5,7 +5,7 @@ import java.util.ArrayList;
  *
  * Staylio Booking Platform
  *
- * Use Case 4: Room Booking
+ * Use Case 5: Booking Cancellation
  */
 
 public class HotelBookingApp {
@@ -15,30 +15,38 @@ public class HotelBookingApp {
         System.out.println("=================================");
         System.out.println("          Staylio Platform       ");
         System.out.println("     Smart Hotel Booking System  ");
-        System.out.println("           Version 4.0           ");
+        System.out.println("           Version 5.0           ");
         System.out.println("=================================");
 
         RoomInventory inventory = new RoomInventory();
-
         ArrayList<Booking> bookings = new ArrayList<>();
 
         inventory.displayInventory();
 
-        System.out.println("\nBooking Room...");
+        System.out.println("\nCreating Booking...");
 
-        String guest = "Nishant";
-        String roomType = "Single";
+        Booking booking1 = new Booking("Nishant", "Single");
 
-        if (inventory.bookRoom(roomType)) {
+        if (inventory.bookRoom(booking1.getRoomType())) {
 
-            Booking booking = new Booking(guest, roomType);
-            bookings.add(booking);
+            bookings.add(booking1);
+            System.out.println("Booking successful:");
+            booking1.displayBooking();
+        }
 
-            System.out.println("Booking Successful!");
-            booking.displayBooking();
-        } else {
+        inventory.displayInventory();
 
-            System.out.println("Room not available.");
+        System.out.println("\nCancelling Booking...");
+
+        if (!bookings.isEmpty()) {
+
+            Booking cancelBooking = bookings.get(0);
+
+            inventory.cancelRoom(cancelBooking.getRoomType());
+
+            bookings.remove(cancelBooking);
+
+            System.out.println("Booking cancelled for " + cancelBooking.getGuestName());
         }
 
         inventory.displayInventory();
