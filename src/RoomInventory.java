@@ -32,6 +32,12 @@ public class RoomInventory {
         return false;
     }
 
+    public void cancelRoom(String roomType) {
+
+        int available = inventory.getOrDefault(roomType, 0);
+        inventory.put(roomType, available + 1);
+    }
+
     public void displayInventory() {
 
         System.out.println("\nRoom Inventory");
