@@ -1,47 +1,41 @@
 /**
- *
  * MAIN CLASS - HotelBookingApp
  *
- * Use Case 1: Application Entry & Welcome Message
+ * Staylio Booking Platform
  *
- * Description:
- * This class represents the entry point of the Hotel Booking Management System.
- *
- * At this stage, the application:
- * - Starts execution from the main() method
- * - Displays a welcome message to the user
- * - Confirms that the system has started successfully
- *
- * No business logic, data structures, or user input
- * is implemented in this use case.
- *
- * The goal is to establish a clear and predictable
- * application startup point.
- *
- * @author Nishant_Ranjan
- * @version 1.0
+ * Use Case 2: Basic Room Types & Static Availability
  */
 
 public class HotelBookingApp {
 
-    /**
-     * Application entry point.
-     *
-     * This method is the first method executed
-     * when the program is launched by the JVM.
-     *
-     * @param args Command-line arguments
-     */
     public static void main(String[] args) {
 
         System.out.println("=================================");
-        System.out.println("============Staylio===============");
-        System.out.println("  Hotel Booking Management System");
-        System.out.println("  Version 1.0");
+        System.out.println("        Staylio Platform         ");
+        System.out.println("   Smart Hotel Booking System    ");
+        System.out.println("          Version 2.0            ");
         System.out.println("=================================");
 
-        System.out.println("System started successfully.");
+        // Create room objects
+        Room singleRoom = new SingleRoom();
+        Room doubleRoom = new DoubleRoom();
+        Room suiteRoom = new SuiteRoom();
+
+        // Static availability variables
+        int singleAvailable = 5;
+        int doubleAvailable = 3;
+        int suiteAvailable = 2;
+
+        System.out.println("\nAvailable Rooms\n");
+
+        System.out.println("Single Room (Available: " + singleAvailable + ")");
+        singleRoom.displayRoomDetails();
+
+        System.out.println("Double Room (Available: " + doubleAvailable + ")");
+        doubleRoom.displayRoomDetails();
+
+        System.out.println("Suite Room (Available: " + suiteAvailable + ")");
+        suiteRoom.displayRoomDetails();
 
     }
-
 }
