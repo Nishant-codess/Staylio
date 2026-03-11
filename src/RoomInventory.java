@@ -3,19 +3,7 @@ import java.util.HashMap;
 /**
  * CLASS - RoomInventory
  *
- * Use Case 3: Centralized Room Inventory
- *
- * Description:
- * This class manages the availability of different
- * room types using a HashMap.
- *
- * Key Concepts:
- * - HashMap data structure
- * - Encapsulation
- * - Inventory management
- *
- * @author Nishant_Ranjan
- * @version 3.0
+ * Use Case 4: Inventory + Booking Update
  */
 
 public class RoomInventory {
@@ -31,9 +19,17 @@ public class RoomInventory {
         inventory.put("Suite", 2);
     }
 
-    public int getAvailableRooms(String roomType) {
+    public boolean bookRoom(String roomType) {
 
-        return inventory.getOrDefault(roomType, 0);
+        int available = inventory.getOrDefault(roomType, 0);
+
+        if (available > 0) {
+
+            inventory.put(roomType, available - 1);
+            return true;
+        }
+
+        return false;
     }
 
     public void displayInventory() {
