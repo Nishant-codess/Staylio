@@ -3,7 +3,10 @@
  *
  * Staylio Booking Platform
  *
- * Use Case 2: Basic Room Types & Static Availability
+ * Use Case 3: Centralized Room Inventory
+ *
+ * @author Nishant_Ranjan
+ * @version 3.0
  */
 
 public class HotelBookingApp {
@@ -11,9 +14,9 @@ public class HotelBookingApp {
     public static void main(String[] args) {
 
         System.out.println("=================================");
-        System.out.println("        Staylio Platform         ");
-        System.out.println("   Smart Hotel Booking System    ");
-        System.out.println("          Version 2.0            ");
+        System.out.println("          Staylio Platform       ");
+        System.out.println("     Smart Hotel Booking System  ");
+        System.out.println("           Version 3.0           ");
         System.out.println("=================================");
 
         // Create room objects
@@ -21,21 +24,21 @@ public class HotelBookingApp {
         Room doubleRoom = new DoubleRoom();
         Room suiteRoom = new SuiteRoom();
 
-        // Static availability variables
-        int singleAvailable = 5;
-        int doubleAvailable = 3;
-        int suiteAvailable = 2;
+        // Create inventory manager
+        RoomInventory inventory = new RoomInventory();
 
-        System.out.println("\nAvailable Rooms\n");
+        System.out.println("\nRoom Types Available\n");
 
-        System.out.println("Single Room (Available: " + singleAvailable + ")");
+        System.out.println("Single Room");
         singleRoom.displayRoomDetails();
 
-        System.out.println("Double Room (Available: " + doubleAvailable + ")");
+        System.out.println("Double Room");
         doubleRoom.displayRoomDetails();
 
-        System.out.println("Suite Room (Available: " + suiteAvailable + ")");
+        System.out.println("Suite Room");
         suiteRoom.displayRoomDetails();
 
+        // Display centralized inventory
+        inventory.displayInventory();
     }
 }
