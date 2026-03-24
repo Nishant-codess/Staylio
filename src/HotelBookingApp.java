@@ -1,11 +1,11 @@
-import java.util.ArrayList;
+import java.util.*;
 
 /**
  * MAIN CLASS - HotelBookingApp
  *
  * Staylio Booking Platform
  *
- * Use Case 5: Booking Cancellation
+ * Use Case 6: Room Allocation System
  */
 
 public class HotelBookingApp {
@@ -15,38 +15,30 @@ public class HotelBookingApp {
         System.out.println("=================================");
         System.out.println("          Staylio Platform       ");
         System.out.println("     Smart Hotel Booking System  ");
-        System.out.println("           Version 5.0           ");
+        System.out.println("           Version 6.0           ");
         System.out.println("=================================");
 
         RoomInventory inventory = new RoomInventory();
-        ArrayList<Booking> bookings = new ArrayList<>();
+        RoomAllocationService allocator = new RoomAllocationService();
+
+        Queue<Booking> bookingQueue = new LinkedList<>();
+
+        // Add booking requests (FIFO)
+        bookingQueue.add(new Booking("Nishant", "Single"));
+        bookingQueue.add(new Booking("Arjun", "Double"));
+        bookingQueue.add(new Booking("Ram", "Suite"));
 
         inventory.displayInventory();
 
-        System.out.println("\nCreating Booking...");
+        System.out.println("\nProcessing Booking Requests...\n");
 
-        Booking booking1 = new Booking("Nishant", "Single");
+        while (!bookingQueue.isEmpty()) {
 
-        if (inventory.bookRoom(booking1.getRoomType())) {
+            Booking booking = bookingQueue.poll(); // FIFO
 
-            bookings.add(booking1);
-            System.out.println("Booking successful:");
-            booking1.displayBooking();
-        }
+            allocator.allocateRoom(booking, inventory);
 
-        inventory.displayInventory();
-
-        System.out.println("\nCancelling Booking...");
-
-        if (!bookings.isEmpty()) {
-
-            Booking cancelBooking = bookings.get(0);
-
-            inventory.cancelRoom(cancelBooking.getRoomType());
-
-            bookings.remove(cancelBooking);
-
-            System.out.println("Booking cancelled for " + cancelBooking.getGuestName());
+            System.out.println("---------------------------");
         }
 
         inventory.displayInventory();
