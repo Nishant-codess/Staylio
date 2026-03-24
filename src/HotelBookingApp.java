@@ -3,9 +3,9 @@ import java.util.*;
 /**
  * MAIN CLASS - HotelBookingApp
  *
- * Staylio Booking Platform
+ * Staylio Platform
  *
- * Use Case 6: Room Allocation System
+ * Use Case 7: Add-On Services
  */
 
 public class HotelBookingApp {
@@ -15,32 +15,25 @@ public class HotelBookingApp {
         System.out.println("=================================");
         System.out.println("          Staylio Platform       ");
         System.out.println("     Smart Hotel Booking System  ");
-        System.out.println("           Version 6.0           ");
+        System.out.println("           Version 7.0           ");
         System.out.println("=================================");
 
-        RoomInventory inventory = new RoomInventory();
-        RoomAllocationService allocator = new RoomAllocationService();
+        // Assume reservation already confirmed (UC6)
+        String reservationId = "RES101";
 
-        Queue<Booking> bookingQueue = new LinkedList<>();
+        AddOnServiceManager serviceManager = new AddOnServiceManager();
 
-        // Add booking requests (FIFO)
-        bookingQueue.add(new Booking("Nishant", "Single"));
-        bookingQueue.add(new Booking("Arjun", "Double"));
-        bookingQueue.add(new Booking("Ram", "Suite"));
+        // Add services
+        serviceManager.addService(reservationId, new AddOnService("Breakfast", 500));
+        serviceManager.addService(reservationId, new AddOnService("Spa", 1200));
+        serviceManager.addService(reservationId, new AddOnService("Airport Pickup", 800));
 
-        inventory.displayInventory();
+        // Display services
+        serviceManager.displayServices(reservationId);
 
-        System.out.println("\nProcessing Booking Requests...\n");
+        // Total cost
+        double totalCost = serviceManager.calculateTotalServiceCost(reservationId);
 
-        while (!bookingQueue.isEmpty()) {
-
-            Booking booking = bookingQueue.poll(); // FIFO
-
-            allocator.allocateRoom(booking, inventory);
-
-            System.out.println("---------------------------");
-        }
-
-        inventory.displayInventory();
+        System.out.println("\nTotal Add-On Cost: ₹" + totalCost);
     }
-}
+}w
