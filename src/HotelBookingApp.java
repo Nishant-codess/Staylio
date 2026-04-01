@@ -1,37 +1,45 @@
 /**
+ *
  * MAIN CLASS - HotelBookingApp
  *
- * Staylio Platform
+ * Use Case 10: Booking Cancellation & Inventory Rollback
  *
- * Use Case 8: Linked List Reservation Handling
+ * Description:
+ * Demonstrates cancellation of bookings
+ * and restoring inventory using Stack (LIFO).
+ *
+ * @author Nishant_Ranjan
+ * @version 10.0
  */
 
 public class HotelBookingApp {
 
     public static void main(String[] args) {
 
-        System.out.println("=================================");
-        System.out.println("          Staylio Platform       ");
-        System.out.println("     Smart Hotel Booking System  ");
-        System.out.println("           Version 8.0           ");
-        System.out.println("=================================");
+        System.out.println("=== Staylio - Booking Cancellation System ===");
 
-        ReservationLinkedList list = new ReservationLinkedList();
+        // Initialize inventory
+        RoomInventory inventory = new RoomInventory();
 
-        // Add reservations (example pattern)
-        list.add("A");
-        list.add("B");
-        list.add("C");
-        list.add("B");
-        list.add("A");
+        // Initialize cancellation service
+        CancellationService cancellationService = new CancellationService();
 
-        System.out.println("\nReservation Sequence:");
-        list.display();
+        // Simulate confirmed bookings
+        cancellationService.registerBooking("B101", "Single");
+        cancellationService.registerBooking("B102", "Double");
+        cancellationService.registerBooking("B103", "Suite");
 
-        if (list.isPalindrome()) {
-            System.out.println("\nReservation pattern is symmetric (Palindrome)");
-        } else {
-            System.out.println("\nReservation pattern is NOT symmetric");
-        }
+        System.out.println("\nBefore Cancellation:");
+        inventory.displayInventory();
+
+        // Cancel bookings
+        cancellationService.cancelBooking("B102", inventory);
+        cancellationService.cancelBooking("B101", inventory);
+
+        System.out.println("\nAfter Cancellation:");
+        inventory.displayInventory();
+
+        // Show rollback history
+        cancellationService.showRollbackHistory();
     }
 }
