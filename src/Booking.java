@@ -31,4 +31,10 @@ public class Booking {
     public void displayBooking() {
         System.out.println("Guest: " + guestName + " | Room Type: " + roomType);
     }
+
+
+    @Override
+    public String toString() {
+        return "Guest: " + guestName + " | Room Type: " + roomType;
+    }
 }
